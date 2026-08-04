@@ -21,116 +21,100 @@
     }
   }
   *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--page); color:var(--text-primary);
+  body{margin:0; background:var(--page); color:var(--text-primary);
     font-family:"Segoe UI",system-ui,-apple-system,"Noto Naskh Arabic",sans-serif;
-    line-height:1.85; -webkit-font-smoothing:antialiased;
-  }
+    line-height:1.85; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:860px; margin:0 auto; padding:32px 22px 60px}
-  header{border-bottom:2px solid var(--baseline); padding-bottom:18px; margin-bottom:26px}
+  header{border-bottom:2px solid var(--baseline); padding-bottom:18px; margin-bottom:20px}
   .kicker{color:var(--series-1); font-weight:700; font-size:14px; letter-spacing:.3px}
   h1{font-size:30px; margin:6px 0 6px; line-height:1.3}
   .date{color:var(--muted); font-size:15px}
-  h2{font-size:21px; margin:34px 0 12px; padding-inline-start:12px; border-inline-start:4px solid var(--series-1)}
-  p{font-size:16.5px; color:var(--text-secondary); margin:0 0 14px}
-  p strong{color:var(--text-primary)}
+  .item{background:var(--surface-1); border:1px solid var(--border); border-radius:12px;
+    padding:16px 18px; margin:14px 0}
+  .item .ttl{font-size:18px; font-weight:700; color:var(--text-primary); text-decoration:none;
+    display:block; line-height:1.5}
+  .item .ttl:hover{color:var(--series-1)}
+  .item .meta{color:var(--muted); font-size:13px; margin:6px 0 8px; font-variant-numeric:tabular-nums}
+  .item p{font-size:15.5px; color:var(--text-secondary); margin:0}
   .note{background:color-mix(in srgb,var(--series-2) 10%,transparent); border:1px solid var(--border);
-    border-radius:10px; padding:12px 16px; font-size:14.5px; color:var(--text-secondary)}
-  /* Stat tiles */
-  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0 8px}
-  .tile{background:var(--surface-1); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
-  .tile .v{font-size:30px; font-weight:750; letter-spacing:-.5px; font-variant-numeric:tabular-nums}
-  .tile .l{font-size:13.5px; color:var(--muted); margin-top:4px}
-  .tile .v.crit{color:var(--critical)}
-  .tile .v.b{color:var(--series-1)}
-  /* Chart */
-  .chartcard{background:var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:22px 20px 14px; margin:16px 0}
-  .chartcard h3{margin:0 0 4px; font-size:17px}
-  .chartcard .sub{color:var(--muted); font-size:13.5px; margin:0 0 16px}
-  .bar-row{display:grid; grid-template-columns:120px 1fr 52px; align-items:center; gap:10px; margin:12px 0}
-  .bar-lab{font-size:14.5px; color:var(--text-secondary); text-align:start}
-  .bar-track{background:var(--grid); border-radius:4px; height:26px; overflow:hidden}
-  .bar-fill{height:100%; border-radius:4px; display:block}
-  .bar-val{font-weight:700; font-variant-numeric:tabular-nums; font-size:15px; text-align:start}
-  .axis{display:grid; grid-template-columns:120px 1fr 52px; gap:10px; margin-top:6px}
-  .axis .ticks{display:flex; justify-content:space-between; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums}
-  .legend{display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:13px; color:var(--text-secondary)}
-  .legend span{display:inline-flex; align-items:center; gap:6px}
-  .sw{width:12px; height:12px; border-radius:3px; display:inline-block}
-  h2.src{border-color:var(--series-2)}
-  ol.src{padding-inline-start:22px; margin:8px 0}
-  ol.src li{margin:7px 0; font-size:14.5px}
+    border-radius:10px; padding:12px 16px; font-size:14px; color:var(--text-secondary); margin:8px 0 18px}
   a{color:var(--series-1); text-decoration:none} a:hover{text-decoration:underline}
-  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); color:var(--muted); font-size:13px}
+  footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--border);
+    color:var(--muted); font-size:13px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="kicker">موجز الرصد اليومي · حرب الشرق الأوسط</div>
-    <h1>أبرز مستجدات الشرق الأوسط في آخر 24 ساعة</h1>
+    <h1>أبرز عناوين الشرق الأوسط في آخر 24 ساعة</h1>
     <div class="date">الثلاثاء، 4 أغسطس 2026 · بتوقيت الرياض</div>
   </header>
 
-  <p>‫يتصدّر المشهد <strong>مسار التهدئة مع إيران</strong> في يومه الـ158 من الحرب الأمريكية–الإيرانية، بعد أن أرجأ الرئيس <strong>ترامب</strong> شنّ هجوم جديد على إيران وأعلن اتجاهاً لاستئناف المفاوضات حول الملف النووي ومضيق هرمز. وانعكس القرار فوراً على أسواق الطاقة، إذ هبطت أسعار النفط بأكثر من <strong>4 دولارات للبرميل</strong> يوم الاثنين، لينزل خام <strong>برنت إلى ما دون 84 دولاراً</strong> بحسب تقارير التداول، بعد ارتفاعات حادة خلال يوليو. هذه الأرقام كما وردت في المصادر وقد تتغيّر.</p>
+  <p class="note">‫هذه النشرة تُجمَّع آلياً من خلاصات الأخبار (RSS) لمصادر عامة مثل الجزيرة وBBC عربي، وتُحدَّث تلقائياً عبر السحابة. العناوين والملخّصات كما وردت في مصادرها، وقد تتغير أو تحتاج تحقّقاً.</p>
 
-  <p>‫في <strong>غزة</strong>، يصمد وقف إطلاق النار للشهر التاسع تقريباً مع سيطرة إسرائيلية على ما يقارب <strong>70%</strong> من القطاع. وأفادت تقارير بأن «مجلس السلام» بزعامة نيكولاي ميلادينوف عدّل شروطه، معلناً أن الانسحاب الإسرائيلي إلى ما وراء «الخط الأصفر» لن يحدث إلا <strong>بعد نزع سلاح حماس</strong>، بعد أيام من قوله إن الخطوتين تسيران «بالتوازي». في المقابل اتهمت <strong>قطر</strong> إسرائيل بمحاولة عرقلة تنفيذ خطة ترامب، وصدر بيان مشترك عن قطر ومصر وتركيا يدعو لحماية المدنيين وتنفيذ الاتفاق.</p>
+<div class="item">
+  <a class="ttl" href="https://www.bbc.com/arabic/articles/c2045j82py1o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">ماهي آفاق حوار مباشر بين حزب الله اللبناني والقيادة السورية؟</a>
+  <div class="meta">BBC عربي · 16:36</div>
+  <p>الأمين العام لحزب الله اللبناني نعيم قاسم يقول في تصريحات له أنه لامانع من الحوار المباشر مع القيادة السورية والتصريحات تثير اهتماما كبيرا في ظل تساؤلات عن إمكانية أن تنهي محادثات مباشرة بين الطرفين حالة العداء الشديد بينهما</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/middle_east/1817523-%D8%A3%D8%B3%D8%A7%D8%A1-%D9%84%D9%84%D8%AF%D9%88%D9%84%D8%A9-%D9%88%D8%B1%D9%85%D9%88%D8%B2%D9%87%D8%A7-%D8%A7%D9%84%D8%A3%D9%85%D9%86-%D8%A7%D9%84%D8%B3%D9%88%D8%B1%D9%8A-%D9%8A%D8%B9%D9%84%D9%86-%D8%A7%D9%84%D9%82%D8%A8%D8%B6-%D8%B9%D9%84%D9%89-%D8%AD%D9%8A%D8%AD%D9%88-%D8%A8%D8%B9%D8%AF-%D8%B1%D8%B5%D8%AF%D9%87-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%AD%D8%AF%D9%88%D8%AF-%D9%85%D8%B9-%D9%84%D8%A8%D9%86%D8%A7%D9%86/" target="_blank" rel="noopener">الأمن السوري يقبض على &quot;حيحو&quot; على الحدود مع لبنان</a>
+  <div class="meta">RT عربية · 16:34</div>
+  <p>أعلنت قوى الأمن الداخلي السوري عن إلقاء القبض على المدعو حسين عبد القادر الأحمد الملقب بـ&quot;حيحو&quot; على الحدود السورية اللبنانية.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/world/1817527-%D9%85%D8%B5%D8%A7%D8%AF%D8%B1-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86-%D9%88%D8%B9%D9%85%D8%A7%D9%86-%D8%AA%D9%82%D8%AA%D8%B1%D8%A8%D8%A7%D9%86-%D9%85%D9%86-%D8%A7%D8%AA%D9%81%D8%A7%D9%82-%D9%84%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D9%81%D8%AA%D8%AD-%D9%85%D8%B6%D9%8A%D9%82-%D9%87%D8%B1%D9%85%D8%B2/" target="_blank" rel="noopener">مصادر:  إيران وعمان تقتربان من اتفاق لإعادة فتح مضيق هرمز</a>
+  <div class="meta">RT عربية · 16:33</div>
+  <p>كشفت صحيفة &quot;نيويورك تايمز&quot; نقلا عن مسؤولين إيرانيين وأمريكيين أن إيران وعمان تقتربان من التوصل إلى اتفاق حول إعادة فتح مضيق هرمز بالكامل أمام حركة الشحن.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/world/1817538-%D8%A7%D8%AA%D9%81%D8%A7%D9%82-%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D9%8A-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A-%D9%88%D8%B4%D9%8A%D9%83-%D9%84%D9%81%D8%AA%D8%AD-%D9%85%D8%B6%D9%8A%D9%82-%D9%87%D8%B1%D9%85%D8%B2-%D9%85%D8%B9-%D8%AD%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%AD%D8%B1%D9%83%D8%A9/" target="_blank" rel="noopener">اتفاق أمريكي إيراني وشيك لفتح مضيق هرمز</a>
+  <div class="meta">RT عربية · 16:29</div>
+  <p>كشف وزير الخزانة الأمريكي سكوت بيسنت عن مفاوضات مع إيران لإعادة فتح مضيق هرمز، وسط توقعات باتفاق وشيك يضمن حرية الملاحة ويؤثر في أسواق النفط العالمية.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/business/1817530-%D8%A3%D9%88%D9%84-%D8%B1%D8%AD%D9%84%D8%A9-%D9%84%D9%84%D8%AE%D8%B7%D9%88%D8%B7-%D8%A7%D9%84%D8%AC%D9%88%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82%D9%8A%D8%A9-%D8%AA%D9%87%D8%A8%D8%B7-%D9%81%D9%8A-%D9%85%D9%88%D8%B3%D9%83%D9%88-%D8%A8%D8%B9%D8%AF-%D8%A7%D9%86%D9%82%D8%B7%D8%A7%D8%B9-%D8%AF%D8%A7%D9%85-%D8%A3%D8%B4%D9%87%D8%B1/" target="_blank" rel="noopener">أول رحلة للخطوط الجوية العراقية تهبط في موسكو بعد انقطاع دام عدة أشهر (فيديو)</a>
+  <div class="meta">RT عربية · 16:27</div>
+  <p>نفذت شركة &quot;الخطوط الجوية العراقية&quot; اليوم الثلاثاء أولى رحلاتها إلى مطار &quot;فنوكوفو&quot; موسكو بعد انقطاع استمر عدة أشهر.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://www.bbc.com/arabic/articles/cpw9vvv9g71o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">انطلاق جولة المفاوضات المباشرة بين لبنان وإسرائيل، وحزب الله يقول إنها ستجلب &quot;العار والمذلة&quot;</a>
+  <div class="meta">BBC عربي · 16:14</div>
+  <p>جولة مفاوضات جديدة بين لبنان وإسرائيل تنطلق في روما بوساطة أمريكية لبحث الترتيبات الأمنية والخلافات الحدودية، وسط رفض من الأمين العام لحزب الله نعيم قاسم الذي وصفها بأنها لن تجلب للبنان سوى &quot;العار والمذلة&quot;.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/business/1817521-%D8%B3%D9%88%D8%B1%D9%8A%D8%A7-%D9%88%D8%A8%D9%8A%D9%84%D8%A7%D8%B1%D9%88%D8%B3-%D8%AA%D8%A8%D8%AD%D8%AB%D8%A7%D9%86%D8%A2%D9%81%D8%A7%D9%82-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83-%D9%81%D9%8A-%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D9%86%D9%82%D9%84/" target="_blank" rel="noopener">سوريا وبيلاروس تبحثان التعاون في قطاع النقل وبناء الطرق والجسور</a>
+  <div class="meta">RT عربية · 16:06</div>
+  <p>بحث وزير النقل السوري يعرب بدر مع سفير بيلاروس لدى سوريا يوري سلوكا في دمشق اليوم تعزيز التعاون في قطاع النقل وبناء الطرق والجسور، استمرارا لتطوير علاقات التعاون بين البلدين.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://www.bbc.com/arabic/articles/cd0x4k2klrpo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener">&quot;دُفنوا في قبر واحد&quot;: غزّة تُشيّع 112 جثماناً في أكبر جنازات القطاع منذ بدء الحرب</a>
+  <div class="meta">BBC عربي · 15:55</div>
+  <p>بعد 20 شهراً تحت الأنقاض، عائلتا أبو شريعة والحساينة تودّعان ضحايا قصف حي الصبرة في غزة.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/videoclub/1817501-%D8%AA%D8%B4%D9%8A%D9%8A%D8%B9-112-%D8%B4%D8%AE%D8%B5%D8%A7-%D9%81%D9%8A-%D9%82%D8%B7%D8%A7%D8%B9-%D8%BA%D8%B2%D8%A9-%D9%81%D9%8A-%D8%A3%D9%83%D8%A8%D8%B1-%D8%AC%D9%86%D8%A7%D8%B2%D8%A9-%D8%AC%D9%85%D8%A7%D8%B9%D9%8A%D8%A9-%D9%85%D9%86%D8%B0-%D8%A8%D8%AF%D8%A1-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8/" target="_blank" rel="noopener">تشييع 112 شخصا في قطاع غزة في أكبر جنازة جماعية منذ بدء الحرب</a>
+  <div class="meta">RT عربية · 15:45</div>
+  <p>نظمت في غزة الثلاثاء واحدة من أكبر الجنازات الجماعية منذ بدء الحرب حيث تم تشييع جثامين 112 شخصا من أصل 308 قتلى قضوا في المجزرة الإسرائيلية الدامية بحق عائلة أبو شريعة والحساينة.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/world/1817504-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D8%A8%D8%B1-%D8%B1%D9%88%D9%8A%D8%AA%D8%B1%D8%B2-%D8%B4%D8%B1%D9%88%D8%B7%D9%87%D8%A7-%D9%85%D9%82%D8%A7%D8%A8%D9%84-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%AD%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D8%B3%D9%81%D9%86-%D8%B9%D8%A8%D8%B1-%D9%85%D8%B6%D9%8A%D9%82-%D9%87%D8%B1%D9%85%D8%B2/" target="_blank" rel="noopener">إيران تكشف عبر &quot;رويترز&quot; شروطها مقابل إعادة حركة السفن عبر مضيق هرمز</a>
+  <div class="meta">RT عربية · 15:33</div>
+  <p>كشف مصدر إيراني كبير لوكالة &quot;رويترز&quot; أن بلاده تريد بموجب خطة مؤقتة يجري بحثها مع سلطنة عمان السيطرة على حركة الشحن الوارد عبر مضيق هرمز، والإشراف على حركة الشحن الصادر.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/middle_east/1817377-%D8%A7%D9%84%D8%AC%D9%8A%D8%B4-%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A-%D9%8A%D8%AA%D9%88%D8%BA%D9%84-%D9%81%D9%8A-%D8%B1%D9%8A%D9%81-%D8%AF%D8%B1%D8%B9%D8%A7-%D9%88%D9%8A%D9%82%D9%88%D9%85-%D8%A8%D8%AA%D9%81%D8%AA%D9%8A%D8%B4-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B2%D9%84-%D9%81%D9%8A-%D9%82%D8%B1%D9%8A%D8%A9-%D9%85%D8%B9%D8%B1%D8%A8%D8%A7/" target="_blank" rel="noopener">سوريا.. الجيش الإسرائيلي يتوغل في ريف درعا ويفتش المنازل في قرية معرية</a>
+  <div class="meta">RT عربية · 15:14</div>
+  <p>أفادت مصادر أهلية في محافظة درعا جنوب سوريا لـRT بتوغل قوة إسـرائيلية مدعومة بالآليات في قرية معرية بمنطقة حوض اليرموك بريف المحافظة الغربي وتفتيشها عددا من المنازل.</p>
+</div>
+<div class="item">
+  <a class="ttl" href="https://arabic.rt.com/videoclub/1817482-%D8%B3%D9%88%D8%B1%D9%8A%D8%A7-%D8%B1%D8%B5%D8%AF-%D8%A2%D9%84%D9%8A%D8%A7%D8%AA-%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%81%D9%8A-%D9%88%D8%A7%D8%AF%D9%8A-%D8%A7%D9%84%D8%B1%D9%82%D8%A7%D8%AF-%D8%A8%D8%B1%D9%8A%D9%81-%D8%AF%D8%B1%D8%B9%D8%A7-%D8%A7%D9%84%D8%BA%D8%B1%D8%A8%D9%8A/" target="_blank" rel="noopener">سوريا.. رصد آليات عسكرية إسرائيلية في وادي الرقاد بريف درعا الغربي</a>
+  <div class="meta">RT عربية · 14:49</div>
+  <p>أظهرت لقطات آليات عسكرية إسرائيلية تتوغل في منطقة وادي الرقاد بريف درعا الغربي السوري على خلفية تحركات متواصلة للقوات الإسرائيلية داخل المنطقة العازلة.</p>
+</div>
 
-  <p>‫لبنانياً، انطلقت في <strong>روما</strong> محادثات غير مباشرة بين وفدين لبناني وإسرائيلي في مقر السفارة الأمريكية، فيما وسّع لبنان وفده التفاوضي. ووصف <strong>حزب الله</strong> المحادثات بأنها «لا تجلب سوى العار»، ما استدعى ردّاً من بيروت. إقليمياً، أعلن الحوثيون استهداف <strong>مطار نجران</strong> السعودي، وأفادت تقارير بإحراق مستوطنين مركبات قرب بلدتَي تلفيت وجالود جنوب نابلس في الضفة الغربية.</p>
-
-  <h2>لقطة إحصائية سريعة</h2>
-  <div class="tiles">
-    <div class="tile"><div class="v b">158</div><div class="l">اليوم من الحرب الأمريكية–الإيرانية</div></div>
-    <div class="tile"><div class="v crit">&lt;$84</div><div class="l">خام برنت بعد هبوط أكثر من 4 دولارات الاثنين (كما ورد)</div></div>
-    <div class="tile"><div class="v">~70%</div><div class="l">نسبة سيطرة إسرائيل على قطاع غزة (تقديرات)</div></div>
-    <div class="tile"><div class="v">روما</div><div class="l">انطلاق محادثات لبنان–إسرائيل غير المباشرة</div></div>
-  </div>
-  <p class="note">‫ملاحظة منهجية: الأرقام أدناه مجمّعة من تقارير إعلامية ومصادر رسمية متضاربة أحياناً، وتغطي الفترة منذ بدء الضربات الصاروخية في 28 فبراير 2026 وحتى 4 أغسطس. بعض الأرقام أولية وقابلة للتعديل ومحل جدل.</p>
-
-  <div class="chartcard">
-    <h3>توزيع القتلى في الضربات الصاروخية على إسرائيل والقوات الأمريكية</h3>
-    <p class="sub">عدد القتلى حسب الفئة · منذ 28 فبراير حتى 4 أغسطس 2026 (أرقام واردة في التقارير)</p>
-
-    <!-- max scale = 40 -->
-    <div class="bar-row">
-      <div class="bar-lab">جنود إسرائيليون</div>
-      <div class="bar-track"><span class="bar-fill" style="width:97.5%;background:var(--series-1)"></span></div>
-      <div class="bar-val">39</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-lab">مدنيون إسرائيليون</div>
-      <div class="bar-track"><span class="bar-fill" style="width:57.5%;background:var(--series-1)"></span></div>
-      <div class="bar-val">23</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-lab">جنود أمريكيون</div>
-      <div class="bar-track"><span class="bar-fill" style="width:45%;background:var(--series-1)"></span></div>
-      <div class="bar-val">18</div>
-    </div>
-
-    <div class="axis">
-      <div></div>
-      <div class="ticks"><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span></div>
-      <div></div>
-    </div>
-    <div class="legend">
-      <span><i class="sw" style="background:var(--series-1)"></i> عدد القتلى (المصدر: تقارير سنتكوم والجيش الإسرائيلي)</span>
-    </div>
-  </div>
-
-  <h2 class="src">المصادر</h2>
-  <ol class="src">
-    <li><a href="https://www.timesofisrael.com/liveblog-august-4-2026/">Times of Israel — تغطية مباشرة (4 أغسطس 2026)</a></li>
-    <li><a href="https://www.timesofisrael.com/board-of-peace-appears-to-shift-terms-for-idf-pullback-after-meeting-pm-gaza-airstrike-reported/">Times of Israel — مجلس السلام يعدّل شروط الانسحاب</a></li>
-    <li><a href="https://arabic.cnn.com/middle-east/article/2026/08/02/trump-hamas-disarmament-announcement-infographic">CNN بالعربية — ترامب يعلن اختراقاً بشأن غزة</a></li>
-    <li><a href="https://www.aljazeera.net/">الجزيرة نت — آخر مستجدات المنطقة</a></li>
-    <li><a href="https://www.alarabiya.net/latest-news">العربية — آخر الأخبار</a></li>
-    <li><a href="https://www.bbc.com/arabic">BBC عربي — تغطية الشرق الأوسط</a></li>
-    <li><a href="https://tradingeconomics.com/commodity/brent-crude-oil">Trading Economics — سعر خام برنت</a></li>
-    <li><a href="https://www.aljazeera.com/news/2026/7/8/oil-prices-surge-as-us-strikes-iran-reversing-fall-to-pre-war-levels">Al Jazeera — تحرّكات أسعار النفط مع التوترات الإيرانية</a></li>
-  </ol>
-
-  <footer>‫تقرير آلي أُنشئ ضمن مهمة الرصد اليومية · «حرب الشرق الأوسط» · 4 أغسطس 2026. الأرقام كما وردت في المصادر وقد تتغير.</footer>
+  <footer>‫تقرير آلي (RSS) · «موجز حرب الشرق الأوسط» · الثلاثاء، 4 أغسطس 2026 · بتوقيت الرياض. المصادر: الجزيرة، BBC عربي.</footer>
 </div>
 </body>
 </html>
